@@ -36,5 +36,15 @@ public class UserService {
         }
     }
 
+    public ResponseEntity<String> updateUser(int id, User user) {
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        existingUser.setName(user.getName());
+        existingUser.setAddress(user.getAddress());
+        existingUser.setPhone(user.getPhone());
+        existingUser.setEmail(user.getEmail());
+        userRepository.save(existingUser);
+        return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+    }
+
 
 }
