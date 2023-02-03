@@ -24,7 +24,10 @@ public class ProductController {
         return productService.findByName(name);
     }
 
-
+    @DeleteMapping("/delete/{name}")
+    public String deleteProduct(@PathVariable String name) {
+        return productService.deleteProduct(name).getBody();
+    }
 
 
 
