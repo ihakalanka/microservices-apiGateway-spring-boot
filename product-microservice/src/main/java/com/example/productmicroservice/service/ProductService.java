@@ -27,20 +27,17 @@ public class ProductService {
         return product;
     }
 
-    public ResponseEntity<String> deleteProduct(String name) {
+    public ResponseEntity<String> deleteProduct(int id) {
         try {
-            productRepository.deleteById(productRepository.findByName(name).getId());
+            productRepository.deleteById(id);
             return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Product not found with name: " + name, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Product not found with id: " + id, HttpStatus.NOT_FOUND);
         }
     }
 
-    public ResponseEntity<String> updateProduct(String name, Product product) {
-        Product existingProduct = productRepository.findByName(name);
-        if (existingProduct == null) {
-            throw new ResourceNotFoundException("Product not found with name: " + name);
-        }
+    public ResponseEntity<String> updateProduct(int id, Product product) {
+        Product existingProduct = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
         existingProduct.setName(product.getName());
         existingProduct.setDescription(product.getDescription());
         existingProduct.setPrice(product.getPrice());
