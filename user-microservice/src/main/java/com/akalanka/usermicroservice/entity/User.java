@@ -1,4 +1,4 @@
-package com.example.productmicroservice.entity;
+package com.akalanka.usermicroservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,15 +10,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "product")
-public class Product {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "price")
-    private int price;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "phone")
+    private String phone;
 }
