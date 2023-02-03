@@ -29,6 +29,10 @@ public class ProductController {
         return productService.deleteProduct(name).getBody();
     }
 
+    @PutMapping("/update/{name}")
+    public String updateProduct(@PathVariable String name, @RequestBody Product product) {
+        return productService.updateProduct(name, product).getBody();
+    }
 
 
 
