@@ -27,6 +27,15 @@ public class ProductService {
         return product;
     }
 
+    public ResponseEntity<String> deleteProduct(String name) {
+        try {
+            productRepository.findByName(name);
+            return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Product not found with name: " + name, HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
 
