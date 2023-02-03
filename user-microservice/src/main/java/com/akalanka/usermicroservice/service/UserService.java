@@ -46,5 +46,11 @@ public class UserService {
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
     }
 
-
+    public List<User> findAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users == null) {
+            throw new ResourceNotFoundException("No users found");
+        }
+        return users;
+    }
 }
