@@ -24,7 +24,10 @@ public class UserController {
         return userService.findByEmail(email);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable int id) {
+        return userService.deleteUser(id).getBody();
+    }
 
 
 
