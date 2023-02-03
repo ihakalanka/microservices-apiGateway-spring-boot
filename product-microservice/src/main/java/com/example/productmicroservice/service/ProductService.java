@@ -29,7 +29,7 @@ public class ProductService {
 
     public ResponseEntity<String> deleteProduct(String name) {
         try {
-            productRepository.findByName(name);
+            productRepository.deleteById(productRepository.findByName(name).getId());
             return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Product not found with name: " + name, HttpStatus.NOT_FOUND);
@@ -49,6 +49,10 @@ public class ProductService {
     }
 
     public List<Product> findAllProducts() {
-        return productRepository.findAll();
+        List<Product> products = productRepository.findAll();
+        if (products.isEmpty()) {
+            throw new ResourceNotFoundException("No products found");
+        }
+        return products;
     }
 }
