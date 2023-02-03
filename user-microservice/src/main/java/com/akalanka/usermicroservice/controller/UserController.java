@@ -39,5 +39,8 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-
+    @GetMapping("/")
+    public String getUser() {
+        return "User Microservice";
+    }
 }
