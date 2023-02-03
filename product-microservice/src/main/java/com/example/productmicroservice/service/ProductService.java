@@ -36,7 +36,17 @@ public class ProductService {
         }
     }
 
-
+    public ResponseEntity<String> updateProduct(String name, Product product) {
+        Product existingProduct = productRepository.findByName(name);
+        if (existingProduct == null) {
+            throw new ResourceNotFoundException("Product not found with name: " + name);
+        }
+        existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setPrice(product.getPrice());
+        productRepository.save(existingProduct);
+        return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
+    }
 
 
 }
