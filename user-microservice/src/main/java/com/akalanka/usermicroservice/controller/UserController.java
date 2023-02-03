@@ -19,7 +19,10 @@ public class UserController {
         return userService.saveUser(user);
     }
 
-
+    @GetMapping("/findByEmail")
+    public User findUserByEmail(@RequestBody String email) {
+        return userService.findByEmail(email);
+    }
 
 
 
