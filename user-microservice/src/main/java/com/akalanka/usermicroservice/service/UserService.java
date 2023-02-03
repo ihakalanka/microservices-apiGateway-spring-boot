@@ -27,5 +27,14 @@ public class UserService {
         return user;
     }
 
+    public ResponseEntity<String> deleteUser(int id) {
+        try {
+            userRepository.deleteById(id);
+            return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("User not found with id: " + id, HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }
