@@ -34,7 +34,10 @@ public class UserController {
         return userService.updateUser(id, user).getBody();
     }
 
-
+    @GetMapping("/all-users")
+    public List<User> findAllUsers() {
+        return userService.findAllUsers();
+    }
 
 
 }
