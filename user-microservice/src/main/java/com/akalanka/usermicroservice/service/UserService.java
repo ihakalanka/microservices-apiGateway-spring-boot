@@ -19,5 +19,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User findByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new ResourceNotFoundException("User not found with email: " + email);
+        }
+        return user;
+    }
+
 
 }
