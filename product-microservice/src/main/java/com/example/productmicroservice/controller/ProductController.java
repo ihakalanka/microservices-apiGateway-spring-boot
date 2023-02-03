@@ -34,7 +34,13 @@ public class ProductController {
         return productService.updateProduct(name, product).getBody();
     }
 
+    @GetMapping("/all-products")
+    public List<Product> findAllProducts() {
+        return productService.findAllProducts();
+    }
 
-
-
+    @GetMapping("/message")
+    public String getProduct() {
+        return "Product Microservice";
+    }
 }
