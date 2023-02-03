@@ -19,19 +19,19 @@ public class ProductController {
         return productService.saveProduct(product);
     }
 
-    @GetMapping("/find/{name}")
-    public Product findProductByName(@PathVariable String name) {
+    @GetMapping("/findByName")
+    public Product findProductByName(@RequestBody String name) {
         return productService.findByName(name);
     }
 
-    @DeleteMapping("/delete/{name}")
-    public String deleteProduct(@PathVariable String name) {
-        return productService.deleteProduct(name).getBody();
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable int id) {
+        return productService.deleteProduct(id).getBody();
     }
 
-    @PutMapping("/update/{name}")
-    public String updateProduct(@PathVariable String name, @RequestBody Product product) {
-        return productService.updateProduct(name, product).getBody();
+    @PutMapping("/update/{id}")
+    public String updateProduct(@PathVariable int id, @RequestBody Product product) {
+        return productService.updateProduct(id, product).getBody();
     }
 
     @GetMapping("/all-products")
@@ -39,7 +39,7 @@ public class ProductController {
         return productService.findAllProducts();
     }
 
-    @GetMapping("/message")
+    @GetMapping("/")
     public String getProduct() {
         return "Product Microservice";
     }
