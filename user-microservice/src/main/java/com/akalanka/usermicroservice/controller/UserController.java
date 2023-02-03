@@ -29,7 +29,10 @@ public class UserController {
         return userService.deleteUser(id).getBody();
     }
 
-
+    @PutMapping("/update/{id}")
+    public String updateUser(@PathVariable int id, @RequestBody User user) {
+        return userService.updateUser(id, user).getBody();
+    }
 
 
 
