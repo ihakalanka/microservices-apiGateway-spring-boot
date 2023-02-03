@@ -19,6 +19,14 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public Product findByName(String name) {
+        Product product = productRepository.findByName(name);
+        if (product == null) {
+            throw new ResourceNotFoundException("Product not found with name: " + name);
+        }
+        return product;
+    }
+
 
 
 
