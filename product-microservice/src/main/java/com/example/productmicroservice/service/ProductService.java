@@ -48,5 +48,7 @@ public class ProductService {
         return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
     }
 
-
+    public List<Product> findAllProducts() {
+        return productRepository.findAll();
+    }
 }
